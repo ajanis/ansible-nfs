@@ -1,0 +1,10 @@
+---
+- name: Deploy NFS Client
+  hosts: all
+  remote_user: root
+  become: True
+  tasks:
+    - import_role:
+        name: common
+    - import_role:
+        name: nfs

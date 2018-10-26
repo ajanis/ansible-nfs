@@ -1,0 +1,5 @@
+---
+- include_tasks: nfs_server.yml
+  when: "'nfsservers' in group_names"
+- include_tasks: nfs_client.yml
+  when: "'nfsservers' not in group_names"

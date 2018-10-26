@@ -1,0 +1,22 @@
+---
+### NFS CLIENT CONFIG
+nfs_server_domain_name: "ucs-c3260-08.atc.wwt.com"
+nfs_server_ip: "10.253.228.33"
+
+
+### STORAGE DIRECTORY CONFIG
+data_mount_root: "/data"
+instance_directory: "instances"
+image_directory: "images"
+
+
+### NFS EXPORTS CONFIG
+nfs_export_root: "/data"
+
+nfs_exports:
+  instances:
+    nfs_export: "{{ nfs_export_root }}/{{ instance_directory }}"
+    mount_opts: "*(rw,sync,no_root_squash,no_subtree_check)"
+  images:
+    nfs_export: "{{ nfs_export_root }}/{{ image_directory }}"
+    mount_opts: "*(rw,sync,no_root_squash,no_subtree_check)"

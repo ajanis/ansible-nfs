@@ -1,0 +1,26 @@
+- name : install nfs-kernel-server package
+  apt:
+    name: nfs-kernel-server
+    state: latest
+    update_cache: yes
+
+- name: create export directories
+  file:
+    state: directory
+    path: "{{ item.value.nfs_export }}"
+    mode: 0755
+  with_dict: "{{ nfs_exports }}"
+
+- name: add exports
+  template:
+    src: exports
+    dest: /etc/exports
+  notify: reload exports
+
+- name: configure user id mappping
+  copy:
+    src: idmapd.conf
+    dest: /etc/idmapd.conf
+  notify: restart nfs-kernel-server
+
+#- include: nfs_client.yml
