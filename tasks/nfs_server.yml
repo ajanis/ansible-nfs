@@ -22,5 +22,3 @@
     src: idmapd.conf
     dest: /etc/idmapd.conf
   notify: restart nfs-kernel-server
-
-#- include: nfs_client.yml
