@@ -1,5 +1,5 @@
 # NFS Exports
 
 {% for item in nfs_exports %}
-{{ nfs_exports[item].nfs_export }}       {{ nfs_exports[item].export_opts }}
+{{ nfs_exports[item].nfs_export }}       {{ nfs_exports[item].export_opts | join(' ') }}
 {% endfor %}
