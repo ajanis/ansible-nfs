@@ -1,7 +1,7 @@
 - name : install nfs-kernel-server package
   apt:
     name: nfs-kernel-server
-    state: latest
+    state: present
     update_cache: yes
 
 - name: set sysctl rmem and wmem settings
