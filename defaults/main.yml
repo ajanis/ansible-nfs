@@ -1,22 +1,24 @@
 ---
+www_domain: "home.example.com"
+
 ### NFS CLIENT CONFIG
-nfs_server_domain_name: "ucs-c3260-08.atc.wwt.com"
+nfs_server_domain_name: "nfs.{{ www_domain }}"
 nfs_server_ip: "10.253.228.33"
+use_ldap_automount: False
 
 
 ### STORAGE DIRECTORY CONFIG
 data_mount_root: "/data"
-instance_directory: "instances"
-image_directory: "images"
+media_directory: "media"
+www_directory: "public_html"
 
-
-### NFS EXPORTS CONFIG
-nfs_export_root: "/data"
+### NFS EXPORTS CONFIGS
+nfs_export_root: "/exports"
 
 nfs_exports:
-  instances:
-    nfs_export: "{{ nfs_export_root }}/{{ instance_directory }}"
+  media:
+    nfs_export: "{{ nfs_export_root }}/{{ media_directory }}"
     mount_opts: "*(rw,sync,no_root_squash,no_subtree_check)"
-  images:
-    nfs_export: "{{ nfs_export_root }}/{{ image_directory }}"
+  public_html:
+    nfs_export: "{{ nfs_export_root }}/{{ www_directory }}"
     mount_opts: "*(rw,sync,no_root_squash,no_subtree_check)"
