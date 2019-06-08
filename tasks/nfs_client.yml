@@ -22,12 +22,12 @@
     state: directory
   with_dict: "{{ nfs_exports }}"
 
-# Do not need fstab as mount options are handled via autofs and ldap
-#- name: configure /etc/fstab on clients
-#  mount:
-#    name: "{{nfs_data_mount_root}}/{{item.key}}"
-#    src: "{{nfs_server_ip}}:{{item.value.nfs_export}}"
-#    fstype: nfs
-#    opts: "{{item.value.mount_opts}}"
-#    state: mounted
-#  with_dict: "{{ nfs_exports }}"
+- name: configure /etc/fstab on clients
+  mount:
+    name: "{{nfs_data_mount_root}}/{{item.key}}"
+    src: "{{nfs_server_ip}}:{{item.value.nfs_export}}"
+    fstype: nfs
+    opts: "{{item.value.mount_opts}}"
+    state: mounted
+  with_dict: "{{ nfs_exports }}"
+  when: not use_ldap_automount
