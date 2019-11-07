@@ -101,3 +101,5 @@ MIT
 ## Author Information
 
 Created by Alan Janis
+
+[ansible-openldap]: https://github.com/ajanis/ansible-openldap.git
